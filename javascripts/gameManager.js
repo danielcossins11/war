@@ -30,7 +30,7 @@ define(function(require){
     if(count<52){
       var draw1 = promise("http://deckofcardsapi.com/api/deck/"+deck1_id+"/draw/?count=1");
       draw1.then(function(data){
-        $("#player1").html("<img src='"+data.cards[0].image+"'>");
+        $("#player1").html("<img src='"+data.cards[0].image+"'><br><h3>P1 count: "+count1+"</h3>");
 
 
 
@@ -53,63 +53,53 @@ define(function(require){
         } else if(card1.value==="ACE"){
           card1.value = "14";
         }
-      });
-
-      var draw2 = promise("http://deckofcardsapi.com/api/deck/"+deck2_id+"/draw/?count=1");
-      draw2.then(function(data){
-        $("#player2").html("<img src='"+data.cards[0].image+"'>");
 
 
+        var draw2 = promise("http://deckofcardsapi.com/api/deck/"+deck2_id+"/draw/?count=1");
+          draw2.then(function(data){
+          $("#player2").html("<img src='"+data.cards[0].image+"'><br><h3>P2 count: "+count2+"</h3>");
+          console.log(data);
+          card2 = {
+            value: data.cards[0].value,
+            suit: data.cards[0].suit
+          };
+          console.log("card2", card2);
 
-
-
-
-
-
-
-        console.log(data);
-        card2 = {
-          value: data.cards[0].value,
-          suit: data.cards[0].suit
-        };
-        console.log("card2", card2);
-
-        if(card2.value==="JACK"){
-          card2.value = "11";
-        } else if(card2.value==="QUEEN"){
-          card2.value = "12";
-        } else if(card2.value==="KING"){
-          card2.value = "13";
-        } else if(card2.value==="ACE"){
-          card2.value = "14";
-        }
-      });
-
-      ////////CHECK WHICH CARD IS HIGHER
-
-      if(card1.value>card2.value){
-        count1++;
-        if(count>=51){
-          if(count1>count2){
-            console.log("player 1 wins");
+          if(card2.value==="JACK"){
+            card2.value = "11";
+          } else if(card2.value==="QUEEN"){
+            card2.value = "12";
+          } else if(card2.value==="KING"){
+            card2.value = "13";
+          } else if(card2.value==="ACE"){
+            card2.value = "14";
           }
-        }
-      } else if(card2.value>card1.value){
-        count2++;
-        if(count>=51){
-          if(count2>count1){
-            console.log("player 2 wins");
+
+          ////////CHECK WHICH CARD IS HIGHER
+
+          if(card1.value>card2.value){
+            count1++;
+            if(count>=51){
+              if(count1>count2){
+                console.log("player 1 wins");
+              }
+            }
+          } else if(card2.value>card1.value){
+            count2++;
+            if(count>=51){
+              if(count2>count1){
+                console.log("player 2 wins");
+              }
+            }
+          } else{
+            console.log("It's a draw");
           }
-        }
-      } else{
-        console.log("It's a draw");
-      }
-      count++;
-      console.log("turn count", count);
-      console.log("count1", count1);
-      console.log("count2", count2);
+          count++;
+          console.log("turn count", count);
+          console.log("count1", count1);
+          console.log("count2", count2);
+        });
+      });
     }
-    
-
   });
 });
