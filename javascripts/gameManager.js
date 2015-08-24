@@ -30,6 +30,13 @@ define(function(require){
     if(count<52){
       var draw1 = promise("http://deckofcardsapi.com/api/deck/"+deck1_id+"/draw/?count=1");
       draw1.then(function(data){
+        $("#player1").html("<img src='"+data.cards[0].image+"'>");
+
+
+
+
+
+
         console.log(data);
         card1 = {
           value: data.cards[0].value,
@@ -50,6 +57,16 @@ define(function(require){
 
       var draw2 = promise("http://deckofcardsapi.com/api/deck/"+deck2_id+"/draw/?count=1");
       draw2.then(function(data){
+        $("#player2").html("<img src='"+data.cards[0].image+"'>");
+
+
+
+
+
+
+
+
+
         console.log(data);
         card2 = {
           value: data.cards[0].value,
@@ -71,25 +88,19 @@ define(function(require){
       ////////CHECK WHICH CARD IS HIGHER
 
       if(card1.value>card2.value){
-        promise("http://deckofcardsapi.com/api/deck/"+deck1_id+"/pile/player1/add/?cards=AS,2S")
-        .then(function(data){
-          count1++;
-          if(count>=51){
-            if(count1>count2){
-              console.log("player 1 wins");
-            }
+        count1++;
+        if(count>=51){
+          if(count1>count2){
+            console.log("player 1 wins");
           }
-        });
+        }
       } else if(card2.value>card1.value){
-        promise("http://deckofcardsapi.com/api/deck/"+deck2_id+"/pile/player2/add/?cards=AS,2S")
-        .then(function(data){
-          count2++;
-          if(count>=51){
-            if(count2>count1){
-              console.log("player 2 wins");
-            }
+        count2++;
+        if(count>=51){
+          if(count2>count1){
+            console.log("player 2 wins");
           }
-        });
+        }
       } else{
         console.log("It's a draw");
       }
