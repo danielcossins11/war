@@ -27,10 +27,11 @@ define(function(require){
   });
 
   $("#draw").on("click", function(){
-    if(count<52){
+    if(count<=52){
       var draw1 = promise("http://deckofcardsapi.com/api/deck/"+deck1_id+"/draw/?count=1");
       draw1.then(function(data){
-        $("#player1").html("<img src='"+data.cards[0].image+"'><br><h3>P1 count: "+count1+"</h3>");
+        // $("#player1").html("<img src='"+data.cards[0].image+"'><br><h3>P1 count: "+count1+"</h3>");
+        $("#player1").html("<img src='"+data.cards[0].image+"'>");
         console.log(data);
         card1 = {
           value: data.cards[0].value,
@@ -50,7 +51,8 @@ define(function(require){
 ///////////data2///////////////
         var draw2 = promise("http://deckofcardsapi.com/api/deck/"+deck2_id+"/draw/?count=1");
         draw2.then(function(data2){
-          $("#player2").html("<img src='"+data2.cards[0].image+"'><br><h3>P2 count: "+count2+"</h3>");
+          // $("#player2").html("<img src='"+data2.cards[0].image+"'><br><h3>P2 count: "+count2+"</h3>");
+          $("#player2").html("<img src='"+data2.cards[0].image+"'>");
           console.log(data2);
           card2 = {
             value: data2.cards[0].value,
@@ -75,6 +77,8 @@ define(function(require){
             if(count>=51){
               if(count1>count2){
                 console.log("player 1 wins");
+                $("#player1").html("<h1>Player 1 Wins!!!</h1>");
+                $("#player2").html("<h1>Player 2 loses :(</h1>");
               }
             }
           } else if(parseInt(card2.value)>parseInt(card1.value)){
@@ -83,11 +87,18 @@ define(function(require){
             if(count>=51){
               if(count2>count1){
                 console.log("player 2 wins");
+                $("#player2").html("<h1>Player 2 Wins!!!</h1>");
+                $("#player1").html("<h1>Player 1 Loses :(</h1>");
               }
             }
           } else{
             console.log("It's a draw");
           }
+          $("#player1").append("<br><h3>P1 count: "+count1+"</h3>");
+          $("#player2").append("<br><h3>P2 count: "+count2+"</h3>");
+
+
+
           count++;
           console.log("turn count", count);
           console.log("count1", count1);
