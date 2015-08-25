@@ -31,18 +31,11 @@ define(function(require){
       var draw1 = promise("http://deckofcardsapi.com/api/deck/"+deck1_id+"/draw/?count=1");
       draw1.then(function(data){
         $("#player1").html("<img src='"+data.cards[0].image+"'><br><h3>P1 count: "+count1+"</h3>");
-
-
-
-
-
-
         console.log(data);
         card1 = {
           value: data.cards[0].value,
           suit: data.cards[0].suit
         };
-        console.log("card2", card1);
 
         if(card1.value==="JACK"){
           card1.value = "11";
@@ -54,16 +47,15 @@ define(function(require){
           card1.value = "14";
         }
 
-
+///////////data2///////////////
         var draw2 = promise("http://deckofcardsapi.com/api/deck/"+deck2_id+"/draw/?count=1");
-          draw2.then(function(data){
-          $("#player2").html("<img src='"+data.cards[0].image+"'><br><h3>P2 count: "+count2+"</h3>");
-          console.log(data);
+        draw2.then(function(data2){
+          $("#player2").html("<img src='"+data2.cards[0].image+"'><br><h3>P2 count: "+count2+"</h3>");
+          console.log(data2);
           card2 = {
-            value: data.cards[0].value,
-            suit: data.cards[0].suit
+            value: data2.cards[0].value,
+            suit: data2.cards[0].suit
           };
-          console.log("card2", card2);
 
           if(card2.value==="JACK"){
             card2.value = "11";
@@ -77,14 +69,16 @@ define(function(require){
 
           ////////CHECK WHICH CARD IS HIGHER
 
-          if(card1.value>card2.value){
+          if(parseInt(card1.value) > parseInt(card2.value)){
+            console.log("card1 wins", card1.value, card2.value);
             count1++;
             if(count>=51){
               if(count1>count2){
                 console.log("player 1 wins");
               }
             }
-          } else if(card2.value>card1.value){
+          } else if(parseInt(card2.value)>parseInt(card1.value)){
+            console.log("card2 wins", card1.value, card2.value);
             count2++;
             if(count>=51){
               if(count2>count1){
