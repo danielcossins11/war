@@ -5,6 +5,7 @@ define(function(require){
   var getCard = require("getCard");
   var checkWin = require("checkWin");
 
+  count = 0;
   var deck1_id, deck2_id, deck1_remaining, deck2_remaining;
   var card1 = {};
   var card2 = {};
@@ -42,7 +43,8 @@ define(function(require){
           card2 = getCard(data2);
 
           ////////CHECK WHICH CARD IS HIGHER
-          checkWin(card1, card2);
+          checkWin(card1, card2, count);
+          count++;
           
         });
       });

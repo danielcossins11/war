@@ -1,10 +1,9 @@
 define(function(require){
   var $ = require("jquery");
-  var count = 0;
   var count1 = 0;
   var count2 = 0;
 
-  return function(card1, card2){
+  return function(card1, card2, count){
     if(parseInt(card1.value) > parseInt(card2.value)){
       console.log("card1 wins", card1.value, card2.value);
       count1++;
@@ -35,7 +34,6 @@ define(function(require){
 
 
 
-    count++;
     console.log("turn count", count);
     console.log("count1", count1);
     console.log("count2", count2);
