@@ -5,9 +5,6 @@ define(function(require){
   var getCard = require("getCard");
   var checkWin = require("checkWin");
 
-  var count = 0;
-  var count1 = 0;
-  var count2 = 0;
   var deck1_id, deck2_id, deck1_remaining, deck2_remaining;
   var card1 = {};
   var card2 = {};
