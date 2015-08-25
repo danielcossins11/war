@@ -34,6 +34,9 @@ define(function(require){
         // $("#player1").html("<img src='"+data.cards[0].image+"'><br><h3>P1 count: "+count1+"</h3>");
         $("#player1").html("<img src='"+data.cards[0].image+"'>");
         card1 = getCard(data);
+        if(card1.value==="14" && card1.suit==="DIAMONDS"){
+          $("#player1").html("<h1>This is the invisible and mysterious ACE OF DIAMONS</h1>");
+        }
 
 ///////////draw card2///////////////
         var draw2 = promise("http://deckofcardsapi.com/api/deck/"+deck2_id+"/draw/?count=1");
@@ -41,6 +44,9 @@ define(function(require){
           // $("#player2").html("<img src='"+data2.cards[0].image+"'><br><h3>P2 count: "+count2+"</h3>");
           $("#player2").html("<img src='"+data2.cards[0].image+"'>");
           card2 = getCard(data2);
+          if(card2.value==="14" && card2.suit==="DIAMONDS"){
+            $("#player2").html("<h1>This is the invisible and mysterious ACE OF DIAMONS</h1>");
+          }
 
           ////////CHECK WHICH CARD IS HIGHER
           checkWin(card1, card2, count);

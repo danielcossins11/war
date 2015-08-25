@@ -17,6 +17,9 @@ define(function(){
       card.value = "14";
     }
 
+
+    
+
     return card;
   };
 });
