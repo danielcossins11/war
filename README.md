@@ -10,4 +10,5 @@ Follow these instructions:
   <li>run the command "bower install"</li>
   <li>"cd .."</li>
   <li>run the command "http-server ./"</li>
+  <li>go to your ip address in your web browser</li>
 </ul>
